@@ -1,0 +1,89 @@
+﻿---
+interface Props {
+  items: string[];
+  speed?: number;
+}
+
+const { items, speed = 40 } = Astro.props;
+---
+
+<div class="slider-wrapper overflow-hidden py-8 bg-bg-secondary border-y border-gray-800">
+  <div class="slider-track" style={`--speed: ${speed}s`}>
+    
+    {/* BLOQUE ORIGINAL */}
+    <div class="slider-set">
+      {items.map((item) => (
+        <div class="slider-item">
+          <span class="slider-text">{item}</span>
+          <span class="slider-dot">■</span>
+        </div>
+      ))}
+    </div>
+
+    {/* BLOQUE DUPLICADO (Clon) */}
+    <div class="slider-set" aria-hidden="true">
+      {items.map((item) => (
+        <div class="slider-item">
+          <span class="slider-text">{item}</span>
+          <span class="slider-dot">■</span>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .slider-track {
+    display: flex;
+    width: max-content;
+    animation: scroll var(--speed, 20s) linear infinite;
+    will-change: transform;
+  }
+
+  .slider-set {
+    display: flex;
+    flex-shrink: 0;
+    
+    /* CLAVE 1: Espacio entre items */
+    gap: 2rem; 
+    
+    /* CLAVE 2: Espacio al final.
+       Esto hace que el último item "empuje" contra el clon,
+       creando el hueco perfecto para el loop.
+       Debe ser IDÉNTICO al gap. */
+    padding-right: 2rem;
+  }
+
+  .slider-item {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .slider-text {
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #a1a1aa;
+    transition: color 0.3s;
+  }
+
+  .slider-text:hover {
+    color: #9eff00;
+  }
+
+  /* Punto separador */
+  .slider-dot {
+    color: #9eff00;
+    font-size: 0.75rem;
+    margin-left: 2rem; /* Espacio entre texto y punto */
+    /* SIN margin-right. El gap del padre gestiona el espacio al siguiente item. */
+  }
+
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+</style>

@@ -1,0 +1,177 @@
+﻿---
+// src/components/Navigation.astro
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-gray-600">
+  <div class="flex justify-between items-center h-16 px-6 md:px-24 lg:px-32">
+    
+    <!-- Logo -->
+    <a href="/" class="hover:opacity-80 transition-opacity">
+      <img 
+        src="/images/Logo IA.png" 
+        alt="Isabel Abad Logo" 
+        class="h-8 w-auto" 
+        width="32" 
+        height="32"
+      />
+    </a>
+    
+    <!-- Menú desktop -->
+    <!-- Se añade la clase 'nav-link' a cada enlace -->
+    <div class="hidden md:flex gap-8 items-center">
+      <a href="/" class="nav-link text-text-primary hover:text-accent transition-colors">INICIO</a>
+      <a href="/#projects" class="nav-link text-text-primary hover:text-accent transition-colors">PROYECTOS</a>
+      <a href="/#about" class="nav-link text-text-primary hover:text-accent transition-colors">SOBRE MÍ</a>
+      <a href="/cv" class="nav-link text-text-primary hover:text-accent transition-colors">CV</a>
+      <a href="/#contact" class="nav-link text-text-primary hover:text-accent transition-colors">CONTACTO</a>
+    </div>
+    
+    <!-- Botón menú móvil -->
+    <button id="menu-btn" class="md:hidden flex flex-col justify-center items-center gap-1 text-text-primary hover:text-accent">
+      <span class="hamburger-line w-6 h-0.5 bg-current transition-all duration-300 origin-center"></span>
+      <span class="hamburger-line w-6 h-0.5 bg-current transition-all duration-300 origin-center"></span>
+      <span class="hamburger-line w-6 h-0.5 bg-current transition-all duration-300 origin-center"></span>
+    </button>
+  </div>
+
+  <!-- Menú móvil -->
+  <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 right-0 px-6 pb-6 bg-background border-b border-gray-800">
+    <div class="flex flex-col gap-4">
+      <a href="/" class="nav-link text-text-primary hover:text-accent transition-colors">INICIO</a>
+      <a href="/#projects" class="nav-link text-text-primary hover:text-accent transition-colors">PROYECTOS</a>
+      <a href="/#about" class="nav-link text-text-primary hover:text-accent transition-colors">SOBRE MÍ</a>
+      <a href="/cv" class="nav-link text-text-primary hover:text-accent transition-colors">CV</a>
+      <a href="/#contact" class="nav-link text-text-primary hover:text-accent transition-colors">CONTACTO</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Espaciador -->
+<div class="h-16"></div>
+
+<style>
+  /* Estilo para el enlace activo: Verde + Línea inferior */
+  .nav-link.active {
+    color: #9eff00; /* accent */
+    border-bottom: 2px solid #9eff00;
+    padding-bottom: 4px; /* Espacio para que la línea no toque el texto */
+  }
+
+  /* Animación de la hamburguesa */
+  #menu-btn.menu-open .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translateY(0.35rem);
+  }
+  #menu-btn.menu-open .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+  #menu-btn.menu-open .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translateY(-0.35rem);
+  }
+</style>
+
+<script>
+  // Variables globales para poder limpiarlas luego
+  let observer: IntersectionObserver | null = null;
+  let scrollHandler: (() => void) | null = null;
+
+  function initNavigation() {
+    // 1. Menú móvil
+    const btn = document.getElementById("menu-btn") as HTMLButtonElement | null;
+    const menu = document.getElementById("mobile-menu") as HTMLElement | null;
+
+    if (btn && menu && !btn.dataset.initialized) {
+      btn.dataset.initialized = "true";
+
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+        btn.classList.toggle("menu-open");
+      });
+
+      menu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          menu.classList.add("hidden");
+          btn.classList.remove("menu-open");
+        });
+      });
+    }
+
+    // 2. Función para activar enlaces
+    const setActive = (selector: string) => {
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+      });
+      document.querySelectorAll(selector).forEach(link => {
+        link.classList.add('active');
+      });
+    };
+
+    // 3. LIMPIEZA CRUCIAL (Mata los listeners zombies)
+    if (observer) observer.disconnect();
+    if (scrollHandler) window.removeEventListener('scroll', scrollHandler);
+
+    // 4. Detectar página actual
+    const path = window.location.pathname;
+    const cleanPath = path === '/' ? '/' : path.replace(/\/$/, '');
+
+    // --- CASO A: CV ---
+    if (cleanPath === '/cv') {
+      setActive('.nav-link[href="/cv"]');
+      return; // Detenemos aquí. Al hacer return antes de crear listeners, no hay problema.
+    }
+
+    // --- CASO B: Detalle Proyecto ---
+    if (cleanPath.startsWith('/projects')) {
+      setActive('.nav-link[href="/#projects"]');
+      return; // Detenemos aquí.
+    }
+
+    // --- CASO C: Home (Solo si no fue ninguno de los anteriores) ---
+    
+    // Verificación extra de seguridad
+    if (cleanPath !== '/') return;
+
+    const sections = document.querySelectorAll<HTMLElement>('section[id]');
+
+    // Observer
+    observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && window.scrollY >= 100) {
+          const id = entry.target.getAttribute('id');
+          if (id) {
+            setActive(`.nav-link[href="/#${id}"]`);
+          }
+        }
+      });
+    }, {
+      rootMargin: '-30% 0px -60% 0px',
+      threshold: 0
+    });
+
+    sections.forEach(section => observer?.observe(section));
+
+    // Función de scroll y la guardamos en la variable global
+    scrollHandler = () => {
+      if (window.scrollY < 100) {
+        setActive('.nav-link[href="/"]');
+      }
+    };
+
+    checkHomeActive(); // Check inicial
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+
+    function checkHomeActive() {
+      if (window.scrollY < 100) {
+        setActive('.nav-link[href="/"]');
+      }
+    }
+  }
+
+  // Init
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initNavigation);
+  } else {
+    initNavigation();
+  }
+
+  document.addEventListener("astro:page-load", initNavigation);
+</script>

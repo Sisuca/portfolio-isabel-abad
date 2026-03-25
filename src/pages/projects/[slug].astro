@@ -1,0 +1,148 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<Layout title={`${project.data.title} | Isabel Abad`}>
+  
+  <article class="min-h-screen pt-4 pb-20 px-6 md:px-24 lg:px-32">
+
+    <h4 class="text-h2-label text-accent font-bold uppercase tracking-widest mb-6">
+      Detalles del Proyecto
+    </h4>
+
+    <a href="/#projects"
+       class="text-text-secondary hover:text-accent text-sm inline-block mb-8">
+      ← Volver a Proyectos
+    </a>
+
+    <div class="grid lg:grid-cols-3 gap-8 lg:gap-12">
+
+      {/* IZQUIERDA - Contenido Principal */}
+      <div class="lg:col-span-2 space-y-12 max-w-2xl">
+        <header>
+          <h1 class="text-4xl md:text-6xl font-bold text-text-primary mb-4 leading-tight">
+            {project.data.title}
+          </h1>
+          <p class="text-xl text-text-secondary leading-relaxed">
+            {project.data.description}
+          </p>
+        </header>
+
+        <div class="flex flex-wrap gap-2">
+          {project.data.technologies.map((tech) => (
+            <span class="text-sm bg-bg-secondary border border-gray-700 text-text-secondary px-3 py-1 rounded-full hover:border-accent transition-colors">
+              {tech}
+            </span>
+          ))}
+        </div>
+
+        <div class="flex flex-wrap gap-4">
+          {project.data.liveUrl && (
+            <a href={project.data.liveUrl} target="_blank" rel="noopener"
+               class="px-6 py-3 bg-accent text-text-dark font-bold rounded-sm hover:bg-white transition-all duration-300 text-center text-sm whitespace-nowrap">
+              Ver Demo
+            </a>
+          )}
+          {project.data.githubUrl && (
+            <a href={project.data.githubUrl} target="_blank" rel="noopener"
+               class="px-6 py-3 border border-accent text-accent font-bold rounded-sm hover:bg-accent hover:text-black transition-all duration-300 text-center text-sm whitespace-nowrap">
+              Ver Código
+            </a>
+          )}
+        </div>
+
+        {project.data.problem && (
+          <section>
+            <h3 class="text-sm font-bold text-accent uppercase tracking-widest mb-4 border-b border-gray-800 pb-2">
+              Problema
+            </h3>
+            <p class="text-text-secondary text-lg leading-relaxed">
+              {project.data.problem}
+            </p>
+          </section>
+        )}
+
+        {project.data.solution && (
+          <section>
+            <h3 class="text-sm font-bold text-accent uppercase tracking-widest mb-4 border-b border-gray-800 pb-2">
+              Solución
+            </h3>
+            <p class="text-text-secondary text-lg leading-relaxed">
+              {project.data.solution}
+            </p>
+          </section>
+        )}
+
+        {project.data.technicalArchitecture && (
+          <section>
+            <h3 class="text-sm font-bold text-accent uppercase tracking-widest mb-4 border-b border-gray-800 pb-2">
+              Arquitectura Técnica
+            </h3>
+            <ul class="space-y-3">
+              {project.data.technicalArchitecture.map((item) => (
+                <li class="flex items-start gap-3 text-text-secondary text-lg leading-relaxed">
+                  <span class="text-accent mt-1">•</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {project.data.projectDemonstration && (
+          <section>
+            <h3 class="text-sm font-bold text-accent uppercase tracking-widest mb-4 border-b border-gray-800 pb-2">
+              Competencias Demostradas
+            </h3>
+            <ul class="space-y-3">
+              {project.data.projectDemonstration.map((item) => (
+                <li class="flex items-start gap-3 text-text-secondary text-lg leading-relaxed">
+                  <span class="text-accent mt-1">•</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </div>
+
+      {/* DERECHA - Sticky Sidebar */}
+      {/* CAMBIO: Añadidas clases 'sticky top-24 self-start' */}
+      <aside class="space-y-8 sticky top-24 self-start">
+        {project.data.image && (
+          <div class="border border-gray-800 overflow-hidden shadow-xl">
+            <img src={project.data.image} alt={project.data.title} class="w-full h-auto object-cover" />
+          </div>
+        )}
+
+        {project.data.features && (
+          <div class="bg-bg-secondary p-6 border border-gray-800">
+            <h3 class="text-sm font-bold text-accent uppercase tracking-widest mb-6">
+              Características Principales
+            </h3>
+            <ul class="space-y-3">
+              {project.data.features.map((feature) => (
+                <li class="flex items-start gap-3 text-text-secondary text-base">
+                  <span class="text-accent mt-1">✓</span>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </aside>
+
+    </div>
+  </article>
+</Layout>

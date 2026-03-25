@@ -1,0 +1,178 @@
+﻿---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ContactForm from '../components/ContactForm.astro';
+import InfiniteSlider from '../components/InfiniteSlider.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+// ORDEN: Alfabético por Título (A-Z)
+projects.sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const skills = [
+  'HTML5',
+  'CSS3',
+  'JavaScript',
+  'Tailwind CSS',
+  'Astro',
+  'Git',
+  'GitHub',
+  'Excel',
+  'Power Query',
+  'Tableau',
+  'Power BI',
+  'DAX',
+  'SQL',
+];
+---
+
+<Layout title="Isabel Abad | Frontend & Data Analyst">
+  <Hero />
+
+  <!-- PROJECTS SECTION - Mismo ancho que proyecto y CV -->
+  <section id="projects" class="py-20 px-6 md:px-24 lg:px-32">
+    <h2
+      class="text-h2-label text-accent font-bold uppercase tracking-widest mb-12"
+    >
+      Proyectos
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {
+        projects.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            description={project.data.description}
+            image={project.data.image || '/images/default.jpg'}
+            technologies={project.data.technologies}
+            slug={project.slug}
+            liveUrl={project.data.liveUrl}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION - Layout 2 columnas -->
+  <section id="about" class="py-20 px-6 md:px-24 lg:px-32 bg-bg-secondary">
+    <h2
+      class="text-h2-label text-accent font-bold uppercase tracking-widest mb-12"
+    >
+      Sobre Mí
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-12 md:gap-16 mb-12">
+      <!-- COLUMNA IZQUIERDA (Perfil) -->
+      <aside class="flex flex-col gap-6 items-center md:items-start">
+        <!-- Foto -->
+        <div
+          class="w-36 h-36 rounded-full overflow-hidden border-2 border-accent flex-shrink-0"
+        >
+          <img
+            src="https://sisuca.github.io/landing-dev-playbook/assets/images/isabel-abad.jpg"
+            alt="Isabel Abad"
+            class="w-full h-full object-cover"
+          />
+        </div>
+
+        <div class="text-center md:text-left">
+          <h3 class="text-3xl font-bold text-text-primary mb-1">Isabel Abad</h3>
+          <p class="text-lg text-accent font-medium mb-3">Frontend Developer</p>
+          <p class="text-base text-text-secondary leading-relaxed">
+            Desarrollo web orientado a producto
+          </p>
+        </div>
+
+        <!-- Botones -->
+        <div class="flex flex-col sm:flex-row gap-3 mt-2 w-full">
+          <a
+            href="/cv"
+            class="flex-1 px-6 py-3 bg-accent text-text-dark font-bold rounded-sm hover:bg-white transition-transition-all duration-300 text-center text-sm whitespace-nowrap"
+          >
+            Ver CV
+          </a>
+          <a
+            href="https://github.com/Sisuca"
+            target="_blank"
+            class="flex-1 px-6 py-3 border border-accent text-accent font-bold rounded-sm hover:bg-accent hover:text-black transition-all duration-300 text-center text-sm whitespace-nowrap"
+          >
+            GitHub
+          </a>
+        </div>
+      </aside>
+
+      <!-- COLUMNA DERECHA (Bio) -->
+      <div class="md:col-span-2 flex flex-col justify-center">
+        <div class="text-lg text-text-secondary leading-relaxed space-y-6">
+          <p>
+            Tras varios años de experiencia en marketing digital y gestión de
+            proyectos web, he evolucionado hacia el desarrollo frontend para
+            combinar mi visión de producto con habilidades técnicas en
+            programación y análisis de datos.
+          </p>
+          <p>
+            Mi trayectoria coordinando equipos multidisciplinares y
+            desarrollando proyectos digitales de principio a fin me permite
+            entender cómo se definen y escalan los productos digitales, así como
+            traducir necesidades de negocio en soluciones concretas.
+          </p>
+          <p>
+            Actualmente, aplico este enfoque en el desarrollo de interfaces web
+            intuitivas, funcionales y orientadas al usuario. Me interesa
+            especialmente trabajar en proyectos basados en datos, donde la
+            visualización y la estructura de la información son clave.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-0">
+      <InfiniteSlider
+        items={[
+          // Frontend
+          'HTML5',
+          'CSS3',
+          'JavaScript',
+          'Tailwind CSS',
+          'Astro',
+          'Git',
+          'GitHub',
+          // Análisis
+          'Excel',
+          'Power Query',
+          'Tableau',
+          'Power BI',
+          'DAX',
+          'SQL',
+        ]}
+        speed={15}
+      />
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION - Mismo ancho, formulario centrado y más estrecho -->
+  <section id="contact" class="py-20 px-6 md:px-24 lg:px-32">
+    <h2
+      class="text-h2-label text-accent font-bold uppercase tracking-widest mb-12 text-center"
+    >
+      Contacto
+    </h2>
+    <div class="max-w-2xl mx-auto">
+      <ContactForm />
+    </div>
+
+    <div class="flex justify-center gap-8 mt-12">
+      <a
+        href="https://github.com/Sisuca"
+        target="_blank"
+        class="text-text-primary hover:text-accent">Ver GitHub</a
+      >
+      <a
+        href="https://www.linkedin.com/in/abadisabel"
+        target="_blank"
+        class="text-text-primary hover:text-accent">Ver LinkedIn</a
+      >
+    </div>
+  </section>
+</Layout>
