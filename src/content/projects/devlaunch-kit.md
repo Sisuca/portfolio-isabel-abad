@@ -5,6 +5,7 @@ image: "/images/devlaunch-kit.jpg"
 
 technologies:
   - HTML5
+  - CSS3
   - Tailwind CSS
   - JavaScript
   - LocalStorage API

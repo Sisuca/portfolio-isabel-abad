@@ -5,6 +5,7 @@ image: "/images/barcelona-viability.jpg"
 
 technologies:
   - HTML5
+  - CSS3
   - Tailwind CSS
   - JavaScript
   - Data Visualization
