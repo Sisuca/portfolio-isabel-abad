@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Página Principal (incluye secciones #projects, #about, #contact) -->
+  <url>
+    <loc>https://www.isabelabad.es/</loc>
+    <lastmod>2026-04-10</lastmod>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Páginas de Proyectos -->
+  <url>
+    <loc>https://www.isabelabad.es/projects/barcelona-viability-insights</loc>
+    <lastmod>2026-04-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.isabelabad.es/projects/devlaunch-kit</loc>
+    <lastmod>2026-04-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Currículum -->
+  <url>
+    <loc>https://www.isabelabad.es/cv</loc>
+    <lastmod>2026-04-10</lastmod>
+    <priority>0.7</priority>
+  </url>
+</urlset>
