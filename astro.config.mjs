@@ -4,11 +4,18 @@ import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  output: 'server', // ⚠️ CAMBIO CLAVE: De 'static' a 'server' para que funcione el formulario
-  site: 'https://www.isabelabad.es', // Tu URL de producción de Vercel
+  // Mantenemos 'server' para que tu formulario funcione correctamente
+  output: 'server', 
+  
+  // URL necesaria para el sitemap y canonical tags
+  site: 'https://www.isabelabad.es', 
+  
+  // Integraciones: Sitemap + Tailwind
   integrations: [
     tailwind(),
-    sitemap(),
+    sitemap(), 
   ],
+  
+  // Adaptador para desplegar en Vercel con funciones serverless
   adapter: vercel(),
 });
