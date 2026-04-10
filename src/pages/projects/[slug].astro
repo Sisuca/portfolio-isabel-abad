@@ -3,11 +3,12 @@ export const prerender = true;
 
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import { getSlug } from '../../utils/helpers';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
   return projects.map((project) => ({
-    params: { slug: project.slug },
+    params: { slug: getSlug(project) }, // CORRECCIÓN: Usamos getSlug
     props: { project },
   }));
 }
@@ -41,8 +42,9 @@ const { project } = Astro.props;
           </p>
         </header>
 
+        {/* CORRECCIÓN: Añadido tipo :string */}
         <div class="flex flex-wrap gap-2">
-          {project.data.technologies.map((tech) => (
+          {project.data.technologies.map((tech: string) => (
             <span class="text-sm bg-bg-secondary border border-gray-700 text-text-secondary px-3 py-1 rounded-full hover:border-accent transition-colors">
               {tech}
             </span>
@@ -91,8 +93,9 @@ const { project } = Astro.props;
             <h3 class="text-sm font-bold text-accent uppercase tracking-widest mb-4 border-b border-gray-800 pb-2">
               Arquitectura Técnica
             </h3>
+            {/* CORRECCIÓN: Añadido tipo :string */}
             <ul class="space-y-3">
-              {project.data.technicalArchitecture.map((item) => (
+              {project.data.technicalArchitecture.map((item: string) => (
                 <li class="flex items-start gap-3 text-text-secondary text-lg leading-relaxed">
                   <span class="text-accent mt-1">•</span>
                   <span>{item}</span>
@@ -107,8 +110,9 @@ const { project } = Astro.props;
             <h3 class="text-sm font-bold text-accent uppercase tracking-widest mb-4 border-b border-gray-800 pb-2">
               Competencias Demostradas
             </h3>
+            {/* CORRECCIÓN: Añadido tipo :string */}
             <ul class="space-y-3">
-              {project.data.projectDemonstration.map((item) => (
+              {project.data.projectDemonstration.map((item: string) => (
                 <li class="flex items-start gap-3 text-text-secondary text-lg leading-relaxed">
                   <span class="text-accent mt-1">•</span>
                   <span>{item}</span>
@@ -120,7 +124,6 @@ const { project } = Astro.props;
       </div>
 
       {/* DERECHA - Sticky Sidebar */}
-      {/* CAMBIO: Añadidas clases 'sticky top-24 self-start' */}
       <aside class="space-y-8 sticky top-24 self-start">
         {project.data.image && (
           <div class="border border-gray-800 overflow-hidden shadow-xl">
@@ -133,8 +136,9 @@ const { project } = Astro.props;
             <h3 class="text-sm font-bold text-accent uppercase tracking-widest mb-6">
               Características Principales
             </h3>
+            {/* CORRECCIÓN: Añadido tipo :string */}
             <ul class="space-y-3">
-              {project.data.features.map((feature) => (
+              {project.data.features.map((feature: string) => (
                 <li class="flex items-start gap-3 text-text-secondary text-base">
                   <span class="text-accent mt-1">✓</span>
                   <span>{feature}</span>

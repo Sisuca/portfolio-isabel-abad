@@ -5,6 +5,7 @@ import ProjectCard from '../components/ProjectCard.astro';
 import ContactForm from '../components/ContactForm.astro';
 import InfiniteSlider from '../components/InfiniteSlider.astro';
 import { getCollection } from 'astro:content';
+import { getSlug } from '../utils/helpers';
 
 const projects = await getCollection('projects');
 // ORDEN: Alfabético por Título (A-Z)
@@ -46,7 +47,7 @@ const skills = [
             description={project.data.description}
             image={project.data.image || '/images/default.jpg'}
             technologies={project.data.technologies}
-            slug={project.slug}
+            slug={getSlug(project)}
             liveUrl={project.data.liveUrl}
           />
         ))
@@ -83,12 +84,11 @@ const skills = [
             Desarrollo web orientado a producto
           </p>
         </div>
-
         <!-- Botones -->
         <div class="flex flex-col sm:flex-row gap-3 mt-2 w-full">
           <a
             href="/cv"
-            class="flex-1 px-6 py-3 bg-accent text-text-dark font-bold rounded-sm hover:bg-white transition-transition-all duration-300 text-center text-sm whitespace-nowrap"
+            class="flex-1 px-6 py-3 bg-accent text-text-dark font-bold rounded-sm hover:bg-white transition-all duration-300 text-center text-sm whitespace-nowrap"
           >
             Ver CV
           </a>
