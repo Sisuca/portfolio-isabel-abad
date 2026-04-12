@@ -1,8 +1,8 @@
-# Portfolio Isabel Abad
+# Portfolio - Isabel Abad
 
 🔗 **Demo:** [https://www.isabelabad.es](https://www.isabelabad.es)
 
-Portfolio profesional desarrollado con Astro y desplegado en Vercel, con foco en **seguridad frontend**, **SEO técnico** y **buenas prácticas de arquitectura**.
+Portfolio profesional orientado a producto, desarrollado con Astro y desplegado en Vercel, con foco en **seguridad frontend**, **SEO técnico** y **buenas prácticas de arquitectura**.
 
 ---
 
@@ -19,7 +19,7 @@ Este portfolio no se ha planteado solo como una web de presentación, sino como 
 
 ## Resultados
 
-- Mejora de seguridad: de configuración básica a **B+ / A (Mozilla Observatory)**
+- Mejora de seguridad: de configuración inicial a **B+ / A (Mozilla Observatory)**
 - Eliminación de warnings de Astro v5 (content collections y tipado)
 - Arquitectura preparada para entorno híbrido (SSR + estático)
 - Base escalable para añadir nuevos proyectos sin tocar código de rutas
@@ -41,7 +41,7 @@ Este portfolio no se ha planteado solo como una web de presentación, sino como 
 
 El proyecto ha sido auditado obteniendo una calificación **A / B+** en análisis de seguridad estándar (Mozilla Observatory).
 
-- Implementación de **Content Security Policy (CSP)** con modelo restrictivo (`default-src 'none'`), equilibrando seguridad y compatibilidad (uso controlado de `unsafe-inline` requerido por Astro/Tailwind).
+- Implementación de **Content Security Policy (CSP)** con modelo restrictivo (`default-src 'none'`), equilibrando seguridad y compatibilidad (uso controlado de `unsafe-inline` por limitaciones de Astro/Tailwind).
 - Configuración de headers HTTP seguros en Vercel (`vercel.json`).
 - Protección frente a XSS, Clickjacking y MIME sniffing.
 - Restricción de orígenes y recursos externos.
@@ -125,6 +125,12 @@ Para el correcto funcionamiento del formulario de contacto, crea un archivo `.en
 RESEND_API_KEY=re_tu_clave_api
 CONTACT_EMAIL=tu_email@ejemplo.com
 ```
+
+---
+
+## Autor
+
+Desarrollado por Isabel Abad — Frontend Developer orientada a producto, datos y marketing digital.
 
 ---
 
