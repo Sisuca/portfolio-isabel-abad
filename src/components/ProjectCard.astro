@@ -45,7 +45,7 @@ const { title, description, image, technologies, slug, liveUrl } = Astro.props;
 
     {/* Tech Stack */}
     <div class="flex flex-wrap gap-2 mb-4">
-      {technologies.map((tech) => (
+      {technologies.map((tech: string) => (
         <span class="text-sm bg-bg-secondary border border-gray-600 text-text-secondary px-3 py-1 rounded-full">
           {tech}
         </span>
@@ -53,12 +53,12 @@ const { title, description, image, technologies, slug, liveUrl } = Astro.props;
     </div>
 
     {/* Footer */}
-    {/* CAMBIO: Quitado justify-between, añadido gap-4 para que estén juntos a la izquierda */}
     <div class="flex flex-wrap gap-4 mt-auto pt-4 border-t border-gray-600">
       
-      {/* CAMBIO: Ahora es <a>, tiene hover local y flex para alinear icono */}
+      {/* MEJORA: Usamos aria-label para accesibilidad limpia */}
       <a 
         href={`/projects/${slug}`}
+        aria-label={`Ver proyecto: ${title}`}
         class="text-sm font-bold text-text-primary hover:text-accent transition-colors uppercase tracking-wide flex items-center gap-2"
       >
         Ver Proyecto
@@ -73,7 +73,7 @@ const { title, description, image, technologies, slug, liveUrl } = Astro.props;
         <a 
           href={liveUrl} 
           target="_blank" 
-          rel="noopener" 
+          rel="noopener noreferrer"
           class="text-sm font-bold text-text-secondary hover:text-accent transition-colors uppercase tracking-wide"
         >
           Demo
