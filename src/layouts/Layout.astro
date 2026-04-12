@@ -57,8 +57,18 @@ const socialImageURL = new URL(image, Astro.site);
     <ViewTransitions />
   </head>
   <body class="overflow-x-hidden">
+    <!-- MEJORA ACCESIBILIDAD: Enlace para saltar navegación -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-accent text-black px-4 py-2 z-[100] rounded">
+      Saltar al contenido principal
+    </a>
+
     <Navigation />
-    <slot />
+    
+    <!-- CAMBIO: Añadido tabindex="-1" para manejo correcto del foco -->
+    <main id="main-content" tabindex="-1">
+      <slot />
+    </main>
+    
     <Footer />
   </body>
 </html>
