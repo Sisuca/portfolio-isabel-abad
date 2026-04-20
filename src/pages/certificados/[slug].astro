@@ -2,6 +2,8 @@
 // src/pages/certificados/[slug].astro
 import Layout from '../../layouts/Layout.astro';
 
+export const prerender = true;
+
 export async function getStaticPaths() {
   // Lista de PDFs (sin .pdf al final)
   const certs = [
