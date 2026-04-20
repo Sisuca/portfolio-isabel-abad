@@ -35,25 +35,26 @@ const pdfUrl = `/certificados/${slug}.pdf`;
       ← Volver al CV
     </a>
 
-    <!-- Contenedor visor -->
+    {/* MOVIDO: Acción arriba para mejor UX */}
+    <div class="text-right mb-4">
+      <a 
+        href={pdfUrl} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="inline-flex items-center gap-2 text-accent hover:underline text-sm font-medium"
+      >
+        Abrir PDF en nueva pestaña 
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+      </a>
+    </div>
+
+    {/* Contenedor visor */}
     <div class="w-full h-[85vh] border border-gray-800 bg-bg-secondary rounded-sm overflow-hidden">
       <iframe 
         src={pdfUrl}
         class="w-full h-full"
         title={`Certificado: ${slug}`}
       ></iframe>
-    </div>
-
-    <!-- Fallback / acción alternativa -->
-    <div class="text-center mt-4">
-      <a 
-        href={pdfUrl} 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        class="text-accent hover:underline text-sm"
-      >
-        Abrir PDF en nueva pestaña ↗
-      </a>
     </div>
 
   </main>
