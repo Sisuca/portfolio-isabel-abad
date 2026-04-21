@@ -35,26 +35,54 @@ const pdfUrl = `/certificados/${slug}.pdf`;
       ← Volver al CV
     </a>
 
-    {/* MOVIDO: Acción arriba para mejor UX */}
-    <div class="text-right mb-4">
-      <a 
-        href={pdfUrl} 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        class="inline-flex items-center gap-2 text-accent hover:underline text-sm font-medium"
-      >
-        Abrir PDF en nueva pestaña 
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-      </a>
+    {/* VERSIÓN ESCRITORIO: Iframe */}
+    <div class="hidden md:block">
+      <div class="text-right mb-4">
+        <a 
+          href={pdfUrl} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="inline-flex items-center gap-2 text-accent hover:underline text-sm font-medium"
+        >
+          Abrir PDF en nueva pestaña 
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        </a>
+      </div>
+
+      <div class="w-full h-[85vh] border border-gray-800 bg-bg-secondary rounded-sm overflow-hidden">
+        <iframe 
+          src={pdfUrl}
+          class="w-full h-full"
+          title={`Certificado: ${slug}`}
+          loading="lazy"
+        ></iframe>
+      </div>
     </div>
 
-    {/* Contenedor visor */}
-    <div class="w-full h-[85vh] border border-gray-800 bg-bg-secondary rounded-sm overflow-hidden">
-      <iframe 
-        src={pdfUrl}
-        class="w-full h-full"
-        title={`Certificado: ${slug}`}
-      ></iframe>
+    {/* VERSIÓN MÓVIL: Botón */}
+    <div class="md:hidden text-center py-12 px-4">
+      <div class="bg-bg-secondary rounded-lg p-8 border border-gray-800">
+        <svg class="w-16 h-16 mx-auto mb-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        <h3 class="text-lg font-semibold mb-2">Certificado Disponible</h3>
+        <p class="text-text-secondary mb-6">
+          Para una mejor experiencia en móvil, abre o descarga el PDF.
+        </p>
+        {/* ✅ MEJORA: Añadido atributo 'download' */}
+        <a 
+          href={pdfUrl} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          download
+          class="inline-flex items-center gap-2 bg-accent text-black px-6 py-3 rounded font-semibold hover:bg-white transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          Ver / Descargar Certificado
+        </a>
+      </div>
     </div>
 
   </main>

@@ -25,13 +25,14 @@
       <a href="/#contact" class="nav-link text-text-primary hover:text-accent transition-colors">CONTACTO</a>
     </div>
     
-    <!-- Botón menú móvil (Accesibilidad completa) -->
+    <!-- Botón menú móvil -->
     <button 
       id="menu-btn" 
       class="md:hidden flex flex-col justify-center items-center gap-1 text-text-primary hover:text-accent"
       aria-label="Abrir menú"
       aria-expanded="false"
       aria-controls="mobile-menu"
+      aria-haspopup="true"
     >
       <span class="hamburger-line w-6 h-0.5 bg-current transition-all duration-300 origin-center"></span>
       <span class="hamburger-line w-6 h-0.5 bg-current transition-all duration-300 origin-center"></span>
@@ -39,7 +40,7 @@
     </button>
   </div>
 
-  <!-- Menú móvil (Añadido aria-hidden inicial) -->
+  <!-- Menú móvil -->
   <div 
     id="mobile-menu" 
     class="hidden md:hidden absolute top-16 left-0 right-0 px-6 pb-6 bg-background border-b border-gray-800"
@@ -59,14 +60,12 @@
 <div class="h-16"></div>
 
 <style>
-  /* Estilo para el enlace activo */
   .nav-link.active {
-    color: #9eff00; /* accent */
+    color: #9eff00;
     border-bottom: 2px solid #9eff00;
     padding-bottom: 4px;
   }
 
-  /* Animación de la hamburguesa */
   #menu-btn.menu-open .hamburger-line:nth-child(1) {
     transform: rotate(45deg) translateY(0.35rem);
   }
@@ -89,31 +88,41 @@
     if (btn && menu && !btn.dataset.initialized) {
       btn.dataset.initialized = "true";
 
+      const closeMenu = () => {
+        menu.classList.add("hidden");
+        btn.classList.remove("menu-open");
+        btn.setAttribute("aria-expanded", "false");
+        btn.setAttribute("aria-label", "Abrir menú");
+        menu.setAttribute("aria-hidden", "true");
+        btn.focus();
+      };
+
+      const openMenu = () => {
+        menu.classList.remove("hidden");
+        btn.classList.add("menu-open");
+        btn.setAttribute("aria-expanded", "true");
+        btn.setAttribute("aria-label", "Cerrar menú");
+        menu.setAttribute("aria-hidden", "false");
+        
+        const firstLink = menu.querySelector("a") as HTMLAnchorElement | null;
+        firstLink?.focus();
+      };
+
       btn.addEventListener("click", () => {
-        // Lógica de visibilidad
-        const isExpanded = !menu.classList.toggle("hidden");
-        btn.classList.toggle("menu-open");
-        
-        // Actualizamos estados ARIA
-        btn.setAttribute("aria-expanded", String(isExpanded));
-        btn.setAttribute("aria-label", isExpanded ? "Cerrar menú" : "Abrir menú");
-        
-        // MEJORA: Sincronizar aria-hidden (opuesto a expanded)
-        menu.setAttribute("aria-hidden", String(!isExpanded));
+        const isExpanded = !menu.classList.contains("hidden");
+        if (isExpanded) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
       });
 
       menu.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", () => {
-          menu.classList.add("hidden");
-          btn.classList.remove("menu-open");
-          btn.setAttribute("aria-expanded", "false");
-          btn.setAttribute("aria-label", "Abrir menú");
-          menu.setAttribute("aria-hidden", "true");
-        });
+        link.addEventListener("click", closeMenu);
       });
     }
 
-    // --- Resto de la lógica de navegación activa ---
+    // --- Lógica de navegación activa ---
     const setActive = (selector: string) => {
       document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active');
@@ -168,6 +177,7 @@
     window.addEventListener('scroll', scrollHandler, { passive: true });
   }
 
+  // Inicialización
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initNavigation);
   } else {
@@ -175,4 +185,43 @@
   }
 
   document.addEventListener("astro:page-load", initNavigation);
+
+  // ✅ LISTENER GLOBAL ROBUSTO + FOCUS TRAP (Versión definitiva)
+  if (!document.body.dataset.navKeyListener) {
+    document.body.dataset.navKeyListener = "true";
+    
+    document.addEventListener('keydown', (e) => {
+      const menu = document.getElementById("mobile-menu");
+      const btn = document.getElementById("menu-btn");
+
+      // Si el menú no existe o está cerrado, no hacemos nada
+      if (!menu || !btn || menu.classList.contains('hidden')) return;
+
+      // 1. Cerrar con Escape
+      if (e.key === 'Escape') {
+        menu.classList.add("hidden");
+        btn.classList.remove("menu-open");
+        btn.setAttribute("aria-expanded", "false");
+        btn.setAttribute("aria-label", "Abrir menú");
+        menu.setAttribute("aria-hidden", "true");
+        btn.focus();
+        return;
+      }
+
+      // 2. Focus Trap (Tab cycling) - La única mejora real incorporada
+      if (e.key === 'Tab') {
+        const focusableElements = menu.querySelectorAll("a");
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey && document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        } else if (!e.shiftKey && document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      }
+    });
+  }
 </script>
