@@ -103,7 +103,6 @@ const certificatesData = [
 ];
 
 // ICONOS OFICIALES (Simple Icons)
-// He añadido 'viewBox' a cada uno porque cada marca define su proporción distinta
 const icons = {
   // --- FRONTEND ---
   html5: {
@@ -139,14 +138,8 @@ const icons = {
     viewBox: '0 0 165.73068 156.45262',
     path: `
       <g transform="translate(66.393545,22.198952)">
-        
-        <!-- 1. Solapa Trasera (Verde) -->
         <path d="M 27.890229,134.25367 V -22.198952 L -66.393545,-6.5579247 V 118.60558 Z" style="fill:currentColor;stroke:none" />
-        
-        <!-- 2. Fondo de la Pantalla (Negro para transparencia) -->
         <rect x="0" y="560.896" width="133.575" height="168.75" transform="matrix(0.70582253,0,0,0.70582253,0.72666782,-399.23032)" style="fill:black;stroke:none" />
-        
-        <!-- 3. Celdas del Grid (Verdes) -->
         <g transform="matrix(0.70582253,0,0,0.70582253,23.680018,-412.21817)" style="fill:currentColor;stroke:none">
           <rect x="0" y="709.42902" width="37.442299" height="20.216801" transform="translate(45.3846,-111.731)" />
           <rect x="0" y="709.42902" width="37.442299" height="20.216801" transform="translate(0,-111.731)" />
@@ -159,17 +152,12 @@ const icons = {
           <rect x="0" y="709.42902" width="37.442299" height="20.216801" transform="translate(45.3846)" />
           <rect x="0" y="709.42902" width="37.442299" height="20.216801" />
         </g>
-        
-        <!-- 4. Marco de la Pantalla (Verde con agujero central) -->
         <g transform="matrix(0.70582253,0,0,0.70582253,-9.5642222,-396.05976)" style="fill:currentColor;stroke:none">
           <path fill-rule="evenodd" d="M 9.48,551.34 C 4.23,551.34 0,555.55 0,560.79 V 720.2 c 0,5.23 4.23,9.45 9.48,9.45 h 135.33 c 5.25,0 9.48,-4.22 9.48,-9.45 V 560.79 c 0,-5.24 -4.23,-9.45 -9.48,-9.45 z m -1.9,7.83 H 146.63 V 721.73 H 7.58 Z"/>
         </g>
-        
-        <!-- 5. La X (Negra para transparencia) -->
         <g transform="matrix(0.70582253,0,0,0.70582253,-41.794902,-430.39663)" style="stroke:none">
-          <path d="m 17.42,652.12 9.25,24.04 c 0.66695,1.41952 0.967121,2.94412 1.120543,3.97 -0.07109,-1.19527 0.180557,-2.12852 0.859457,-3.97 l 10.96,-25.36 16.84,-1 c -6.81905,12.98723 -13.377034,26.10986 -19.67,39.36 l 20.51,40.49 -18.15,-1.08 -11.03,-26.42 c -0.862713,-1.99274 -0.696225,-2.26412 -0.87,-3.24 -0.08029,0.69478 -0.108047,1.26451 -0.57,2.52 L 15.57,727.17 0,726.24 18,689.7 1.8,653.05 Z" style="fill:black;stroke:none" />
+          <path d="m 17.42,652.12 9.25,24.04 c 0.66695,1.41952 0.967121,2.94412 1.120543,3.97-0.07109,-1.19527 0.180557,-2.12852 0.859457,-3.97 l 10.96,-25.36 16.84,-1 c -6.81905,12.98723 -13.377034,26.10986 -19.67,39.36 l 20.51,40.49 -18.15,-1.08 -11.03,-26.42 c -0.862713,-1.99274 -0.696225,-2.26412 -0.87,-3.24 -0.08029,0.69478 -0.108047,1.26451 -0.57,2.52 L 15.57,727.17 0,726.24 18,689.7 1.8,653.05 Z" style="fill:black;stroke:none" />
         </g>
-        
       </g>
     `,
   },
@@ -181,21 +169,16 @@ const icons = {
     viewBox: '0 0 24 24',
     path: `<path fill="currentColor" d="M12 1.01l-1.14 6.02L4.83 6.2l3.58 4.93L2.9 14.8l6.16.79L12 21.82l2.94-6.23 6.16-.79-5.51-3.67 3.58-4.93-6.03.83L12 1.01z"/>`,
   },
-  // Power BI Oficial (Barras verticales con esquinas redondeadas)
   powerbi: {
     viewBox: '0 0 630 630',
     path: `
       <g transform="translate(77.5, 0)">
-        <!-- Barra Derecha (La más alta) -->
         <rect fill="currentColor" x="256" y="0" width="219" height="630" rx="26" />
-        <!-- Barra Central (Mediana) -->
         <path fill="currentColor" d="M346,604 L346,630 L320,630 L153,630 C138.640597,630 127,618.359403 127,604 L127,183 C127,168.640597 138.640597,157 153,157 L320,157 C334.359403,157 346,168.640597 346,183 L346,604 Z" />
-        <!-- Barra Izquierda (La más baja) -->
         <path fill="currentColor" d="M219,604 L219,630 L193,630 L26,630 C11.6405965,630 1.75851975e-15,618.359403 0,604 L0,341 C-1.75851975e-15,326.640597 11.6405965,315 26,315 L193,315 C207.359403,315 219,326.640597 219,341 L219,604 Z" />
       </g>
     `,
   },
-  // DAX: Usamos 'fx' porque el enlace de Wikimedia era del índice bursátil alemán
   dax: {
     viewBox: '0 0 24 24',
     path: `<path fill="currentColor" d="M18 4H6v2l6.5 6L6 18v2h12v-3h-7l5-5-5-5h7z"/>`,
@@ -224,6 +207,12 @@ const skills = {
     { name: 'SQL', svg: icons.sql },
   ],
 };
+
+// Icono compartido para enlaces de certificados (DRY)
+const certLinkIcon = `<svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <line x1="7" y1="17" x2="17" y2="7" />
+    <polyline points="7 7 17 7 17 17" />
+  </svg>`;
 ---
 
 <Layout title="CV | Isabel Abad">
@@ -310,7 +299,6 @@ const skills = {
                 {
                   skills.frontend.map((skill) => (
                     <div class="flex items-center gap-1.5 bg-bg-secondary px-3 py-1 border border-gray-700 rounded-full hover:border-accent transition-colors">
-                      {/* SVG CON VIEWBOX DINÁMICO */}
                       <svg
                         class="w-5 h-5 text-accent"
                         viewBox={skill.svg.viewBox}
@@ -338,7 +326,6 @@ const skills = {
                 {
                   skills.analyst.map((skill) => (
                     <div class="flex items-center gap-1.5 bg-bg-secondary px-3 py-1 border border-gray-700 rounded-full hover:border-accent transition-colors">
-                      {/* SVG CON VIEWBOX DINÁMICO */}
                       <svg
                         class="w-5 h-5 text-accent"
                         viewBox={skill.svg.viewBox}
@@ -419,23 +406,28 @@ const skills = {
                   </div>
                   <p class="text-md text-text-secondary mb-2">{cert.issuer}</p>
 
-                  <a
-                    href={cert.link}
-                    rel="noopener noreferrer"
-                    class="text-sm font-bold text-accent hover:text-white transition-colors inline-flex items-center gap-1.5 mt-2 group"
-                  >
-                    <span>Ver Certificado</span>
-                    <svg
-                      class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
+                  {/* WRAPPER DE ENLACES: Muestra el correcto según el dispositivo */}
+                  <div class="mt-2 flex items-center gap-2">
+                    {/* Enlace para ESCRITORIO (Visible en md y superiores) */}
+                    <a
+                      href={cert.link}
+                      class="hidden md:inline-flex text-sm font-bold text-accent hover:text-white transition-colors items-center gap-1.5 group"
                     >
-                      <line x1="7" y1="17" x2="17" y2="7" />
-                      <polyline points="7 7 17 7 17 17" />
-                    </svg>
-                  </a>
+                      <span>Ver Certificado</span>
+                      <Fragment set:html={certLinkIcon} />
+                    </a>
+
+                    {/* Enlace para MÓVIL (Oculto en md y superiores) */}
+                    <a
+                      href={cert.link + '.pdf'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="md:hidden inline-flex text-sm font-bold text-accent hover:text-white transition-colors items-center gap-1.5 group"
+                    >
+                      <span>Ver Certificado</span>
+                      <Fragment set:html={certLinkIcon} />
+                    </a>
+                  </div>
                 </div>
               ))
             }

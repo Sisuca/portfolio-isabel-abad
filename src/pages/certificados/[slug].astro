@@ -1,6 +1,6 @@
 ---
 // src/pages/certificados/[slug].astro
-import Layout from '../../layouts/Layout.astro';
+import Layout from '../../layouts/Layout.astro'; // ✅ Ruta correcta (dos niveles)
 
 export const prerender = true;
 
@@ -35,7 +35,7 @@ const pdfUrl = `/certificados/${slug}.pdf`;
       ← Volver al CV
     </a>
 
-    {/* Enlace superior (visible siempre) */}
+    {/* Enlace superior por si se quiere abrir fuera */}
     <div class="text-right mb-4">
       <a 
         href={pdfUrl} 
@@ -48,7 +48,7 @@ const pdfUrl = `/certificados/${slug}.pdf`;
       </a>
     </div>
 
-    {/* 🖥️ ESCRITORIO: Altura fija de 1300px para ver certificado completo sin scroll interno */}
+    {/* DESKTOP: Altura 900px para evitar scroll interno */}
     <div class="hidden md:block w-full h-[900px] border border-gray-800 bg-bg-secondary rounded-sm overflow-hidden">
       <iframe 
         src={pdfUrl}
@@ -58,28 +58,12 @@ const pdfUrl = `/certificados/${slug}.pdf`;
       ></iframe>
     </div>
 
-    {/* 📱 MÓVIL: Mensaje de carga + Redirección Automática */}
-    <div id="mobile-loader" class="md:hidden text-center py-12 px-4">
-      <div class="bg-bg-secondary rounded-lg p-8 border border-gray-800">
-        <svg class="w-12 h-12 mx-auto mb-4 text-accent animate-spin" fill="none" viewBox="0 0 24 24">
-          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-        </svg>
-        <h3 class="text-lg font-semibold mb-2">Abriendo Certificado...</h3>
-        <p class="text-text-secondary text-sm">
-          Si no se abre automáticamente, <a href={pdfUrl} target="_blank" class="text-accent underline">haz clic aquí</a>.
-        </p>
-      </div>
-    </div>
-
   </main>
 </Layout>
 
 <script define:vars={{ pdfUrl }}>
-  // Detección de móvil y redirección automática
+  // SEGURIDAD: Si alguien entra aquí en móvil, lo enviamos directo al PDF
   if (window.innerWidth < 768) {
-    setTimeout(() => {
-      window.location.href = pdfUrl;
-    }, 500);
+    window.location.href = pdfUrl;
   }
 </script>
