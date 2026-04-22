@@ -35,7 +35,7 @@ const pdfUrl = `/certificados/${slug}.pdf`;
       ← Volver al CV
     </a>
 
-    {/* Enlace superior por si acaso */}
+    {/* Enlace superior (visible siempre) */}
     <div class="text-right mb-4">
       <a 
         href={pdfUrl} 
@@ -44,12 +44,12 @@ const pdfUrl = `/certificados/${slug}.pdf`;
         class="inline-flex items-center gap-2 text-accent hover:underline text-sm font-medium"
       >
         Abrir PDF en nueva pestaña 
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
       </a>
     </div>
 
-    {/* ✅ VISOR UNIFICADO: Se ve igual en móvil y escritorio */}
-    <div class="w-full h-[85vh] border border-gray-800 bg-bg-secondary rounded-sm overflow-hidden">
+    {/* 🖥️ ESCRITORIO: Altura fija de 1300px para ver certificado completo sin scroll interno */}
+    <div class="hidden md:block w-full h-[900px] border border-gray-800 bg-bg-secondary rounded-sm overflow-hidden">
       <iframe 
         src={pdfUrl}
         class="w-full h-full"
@@ -58,5 +58,28 @@ const pdfUrl = `/certificados/${slug}.pdf`;
       ></iframe>
     </div>
 
+    {/* 📱 MÓVIL: Mensaje de carga + Redirección Automática */}
+    <div id="mobile-loader" class="md:hidden text-center py-12 px-4">
+      <div class="bg-bg-secondary rounded-lg p-8 border border-gray-800">
+        <svg class="w-12 h-12 mx-auto mb-4 text-accent animate-spin" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <h3 class="text-lg font-semibold mb-2">Abriendo Certificado...</h3>
+        <p class="text-text-secondary text-sm">
+          Si no se abre automáticamente, <a href={pdfUrl} target="_blank" class="text-accent underline">haz clic aquí</a>.
+        </p>
+      </div>
+    </div>
+
   </main>
 </Layout>
+
+<script define:vars={{ pdfUrl }}>
+  // Detección de móvil y redirección automática
+  if (window.innerWidth < 768) {
+    setTimeout(() => {
+      window.location.href = pdfUrl;
+    }, 500);
+  }
+</script>
