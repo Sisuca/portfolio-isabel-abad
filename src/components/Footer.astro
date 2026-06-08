@@ -4,10 +4,14 @@ import { getSlug } from '../utils/helpers';
 
 const allProjects = await getCollection('projects');
 
-// ORDEN: Alfabético por Título (A-Z)
+// ORDEN: Por prioridad (ascendente)
 const featuredProjects = allProjects
-  .sort((a, b) => a.data.title.localeCompare(b.data.title))
-  .slice(0, 2);
+  .sort((a, b) => {
+    const priorityA = a.data.priority ?? 99;
+    const priorityB = b.data.priority ?? 99;
+    return priorityA - priorityB;
+  })
+  .slice(0, 2); // Muestra los 2 primeros (UX Design Recipe y Barcelona Viability)
 
 const currentYear = new Date().getFullYear();
 ---

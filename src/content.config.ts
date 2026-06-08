@@ -13,6 +13,7 @@ const projects = defineCollection({
     technicalArchitecture: z.array(z.string()).optional(),
     projectDemonstration: z.array(z.string()).optional(),
     features: z.array(z.string()).optional(),
+    priority: z.number().default(99),
   }),
 });
 

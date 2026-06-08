@@ -8,8 +8,13 @@ import { getCollection } from 'astro:content';
 import { getSlug } from '../utils/helpers';
 
 const projects = await getCollection('projects');
-// ORDEN: Alfabético por Título (A-Z)
-projects.sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+// ORDEN: Por prioridad (ascendente). Si no tiene prioridad, va al final.
+projects.sort((a, b) => {
+  const priorityA = a.data.priority ?? 99;
+  const priorityB = b.data.priority ?? 99;
+  return priorityA - priorityB;
+});
 
 const skills = [
   'HTML5',
