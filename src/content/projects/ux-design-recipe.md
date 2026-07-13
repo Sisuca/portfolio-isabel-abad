@@ -17,7 +17,7 @@ githubUrl: "https://github.com/Sisuca/ux-design-recipe"
 
 problem: "Muchas PYMES quieren crear una tienda online pero no saben qué estilo de diseño sería el más apropiado para su negocio, carecen de referencias visuales y no tienen recursos para contratar una consultoría UX especializada."
 
-solution: "UX Design Recipe transforma la información sobre el negocio que el usuario aporta con 4 sencillos pasos en recomendaciones UX/UI personalizadas mediante un motor de reglas explicable que genera: la paleta de colores, tipograsfás,  decisiones de layout, funcionalidades recomendadas y una maqueta visual adaptada al contexto."
+solution: "UX Design Recipe transforma la información sobre el negocio que el usuario aporta con 4 sencillos pasos en recomendaciones UX/UI personalizadas mediante un motor de reglas explicable que genera: la paleta de colores, tipografías, decisiones de layout, funcionalidades recomendadas y una maqueta visual adaptada al contexto."
 
 technicalArchitecture:
   - "Motor de scoring basado en reglas compositivas"
