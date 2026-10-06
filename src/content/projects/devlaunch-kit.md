@@ -2,7 +2,7 @@
 title: "DevLaunch Kit"
 description: "Checklist interactiva para planificar, desarrollar y validar landing pages profesionales, con guardado automático del progreso."
 image: "/images/devlaunch-kit.jpg"
-priority: 3
+priority: 4
 
 technologies:
   - HTML5
@@ -39,6 +39,5 @@ features:
   - "Guardado automático del progreso en el navegador"
   - "Retomar tareas exactamente donde se dejaron"
   - "Diseño responsive mobile-first"
----
 
-Contenido adicional opcional en Markdown si lo necesitas.
+---

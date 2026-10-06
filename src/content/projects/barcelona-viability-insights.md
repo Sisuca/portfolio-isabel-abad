@@ -2,7 +2,7 @@
 title: "Barcelona Viability Insights"
 description: "Dashboard interactivo para profesionales del sector tecnológico y digital, que analiza cuál es el mejor distrito para vivir en Barcelona, según tu perfil profesional."
 image: "/images/barcelona-viability.jpg"
-priority: 2
+priority: 3
 
 technologies:
   - HTML5
@@ -38,6 +38,7 @@ features:
   - "KPIs clave de viabilidad económica"
   - "Gráficos interactivos"
   - "Interfaz responsive optimizada para móvil"
+  
 ---
 
 Este proyecto explora la viabilidad real de vivir en Barcelona trabajando en el sector digital, utilizando datos abiertos y fuentes públicas para construir una herramienta orientada a decisiones.

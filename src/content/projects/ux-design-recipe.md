@@ -2,7 +2,7 @@
 title: "UX Design Recipe"
 description: "Motor de composición UX/UI basado en reglas que genera recomendaciones de diseño para tiendas online a partir del contexto de negocio, productos, comportamiento de compra y servicios ofrecidos."
 image: "/images/ux-design-recipe.jpg"
-priority: 1
+priority: 2
 
 technologies:
   - React
