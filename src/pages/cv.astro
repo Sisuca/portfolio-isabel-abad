@@ -9,12 +9,12 @@ const experienceData = [
     period: '2024 - actualidad',
     company: 'Freelance',
     description:
-      'Consultora en proyectos digitales de estrategia, contenidos y campañas online.',
+      'Desarrollo web y consultoría digital orientados a producto, conversión y análisis de datos.',
     bullets: [
+      'Conceptualización y desarrollo técnico de productos web propios (ver ejemplos en <a href="/#projects" class="text-text-primary underline hover:text-accent transition-colors">Proyectos</a>)',
       'Definición de estrategias digitales orientadas a resultados, aumentando la conversión un 15%',
-      'Gestión de presencia online y campañas en redes sociales para múltiples clientes',
-      'Análisis de rendimiento y optimización de acciones, mejorando KPIs clave en promedio un 20%',
-      'Coordinación remota con equipos multidisciplinares',
+      'Diseño de cuadros de mando para análisis de rendimiento, mejorando los KPIs clave en un 20%',
+      'Coordinación remota con equipos multidisciplinares en proyectos digitales de principio a fin',
     ],
   },
   {
@@ -31,7 +31,7 @@ const experienceData = [
     ],
   },
   {
-    role: 'Responsable de Marketing y Comunicación',
+    role: 'Digital Marketing & Project Manager',
     period: '2018 - 2022',
     company: 'Doria Global Media',
     description:
@@ -217,9 +217,7 @@ const certLinkIcon = `<svg class="w-3.5 h-3.5 transition-transform group-hover:t
 
 <Layout title="CV | Isabel Abad">
   <main class="min-h-screen pt-4 pb-20 px-6 md:px-24 lg:px-32">
-    <h4
-      class="text-h2-label text-accent font-bold uppercase tracking-widest mb-12"
-    >
+    <h4 class="text-h2-label text-accent font-bold uppercase tracking-widest mb-12">
       CV
     </h4>
 
@@ -233,9 +231,7 @@ const certLinkIcon = `<svg class="w-3.5 h-3.5 transition-transform group-hover:t
     <div class="flex flex-col md:flex-row gap-12 md:gap-16">
       {/* COLUMNA IZQUIERDA */}
       <aside class="w-full md:w-[30%] flex flex-col gap-8">
-        <div
-          class="w-36 h-36 rounded-full overflow-hidden border-2 border-accent mx-auto md:mx-0 flex-shrink-0"
-        >
+        <div class="w-36 h-36 rounded-full overflow-hidden border-2 border-accent mx-auto md:mx-0 flex-shrink-0">
           <img
             src="/images/isabel-abad.jpg"
             alt="Isabel Abad"
@@ -283,63 +279,53 @@ const certLinkIcon = `<svg class="w-3.5 h-3.5 transition-transform group-hover:t
 
           {/* Tech Stack */}
           <div class="mt-4">
-            <h3
-              class="text-sm font-bold text-accent uppercase tracking-widest mb-2 border-b border-gray-800 pb-2"
-            >
+            <h3 class="text-sm font-bold text-accent uppercase tracking-widest mb-2 border-b border-gray-800 pb-2">
               Stack Tecnológico
             </h3>
 
             <div class="mb-8">
-              <h4
-                class="text-text-primary text-base font-semibold capitalize tracking-wide mb-3"
-              >
+              <h4 class="text-text-primary text-base font-semibold capitalize tracking-wide mb-3">
                 Frontend Developer
               </h4>
               <div class="flex flex-wrap gap-2">
-                {
-                  skills.frontend.map((skill) => (
-                    <div class="flex items-center gap-1.5 bg-bg-secondary px-3 py-1 border border-gray-700 rounded-full hover:border-accent transition-colors">
-                      <svg
-                        class="w-5 h-5 text-accent"
-                        viewBox={skill.svg.viewBox}
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <Fragment set:html={skill.svg.path} />
-                      </svg>
-                      <span class="text-sm font-medium text-text-primary">
-                        {skill.name}
-                      </span>
-                    </div>
-                  ))
-                }
+                {skills.frontend.map((skill) => (
+                  <div class="flex items-center gap-1.5 bg-bg-secondary px-3 py-1 border border-gray-700 rounded-full hover:border-accent transition-colors">
+                    <svg
+                      class="w-5 h-5 text-accent"
+                      viewBox={skill.svg.viewBox}
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <Fragment set:html={skill.svg.path} />
+                    </svg>
+                    <span class="text-sm font-medium text-text-primary">
+                      {skill.name}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
 
             <div>
-              <h4
-                class="text-text-primary text-base font-semibold capitalize tracking-wide mb-3"
-              >
+              <h4 class="text-text-primary text-base font-semibold capitalize tracking-wide mb-3">
                 Data Analyst
               </h4>
               <div class="flex flex-wrap gap-2">
-                {
-                  skills.analyst.map((skill) => (
-                    <div class="flex items-center gap-1.5 bg-bg-secondary px-3 py-1 border border-gray-700 rounded-full hover:border-accent transition-colors">
-                      <svg
-                        class="w-5 h-5 text-accent"
-                        viewBox={skill.svg.viewBox}
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <Fragment set:html={skill.svg.path} />
-                      </svg>
-                      <span class="text-sm font-medium text-text-primary">
-                        {skill.name}
-                      </span>
-                    </div>
-                  ))
-                }
+                {skills.analyst.map((skill) => (
+                  <div class="flex items-center gap-1.5 bg-bg-secondary px-3 py-1 border border-gray-700 rounded-full hover:border-accent transition-colors">
+                    <svg
+                      class="w-5 h-5 text-accent"
+                      viewBox={skill.svg.viewBox}
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <Fragment set:html={skill.svg.path} />
+                    </svg>
+                    <span class="text-sm font-medium text-text-primary">
+                      {skill.name}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -349,88 +335,80 @@ const certLinkIcon = `<svg class="w-3.5 h-3.5 transition-transform group-hover:t
       {/* COLUMNA DERECHA */}
       <div class="w-full md:w-[70%] flex flex-col gap-12">
         <section>
-          <h2
-            class="text-sm font-bold text-accent uppercase tracking-widest mb-8 border-b border-gray-800 pb-4"
-          >
+          <h2 class="text-sm font-bold text-accent uppercase tracking-widest mb-8 border-b border-gray-800 pb-4">
             Experiencia Profesional
           </h2>
 
           <div class="flex flex-col gap-8">
-            {
-              experienceData.map((exp) => (
-                <div class="flex flex-col gap-1">
-                  <div class="flex justify-between items-baseline">
-                    <h3 class="text-xl font-bold text-text-primary">
-                      {exp.role}
-                    </h3>
-                    <span class="text-sm font-mono text-accent flex-shrink-0 ml-4">
-                      {exp.period}
-                    </span>
-                  </div>
-                  <p class="text-md text-text-secondary mb-2">{exp.company}</p>
-                  <p class="text-lg text-text-secondary leading-relaxed mb-2">
-                    {exp.description}
-                  </p>
-
-                  {exp.bullets && (
-                    <ul class="list-disc pl-5 marker:text-accent text-base text-text-secondary leading-relaxed space-y-1 mt-1">
-                      {exp.bullets.map((item) => (
-                        <li>{item}</li>
-                      ))}
-                    </ul>
-                  )}
+            {experienceData.map((exp) => (
+              <div class="flex flex-col gap-1">
+                <div class="flex justify-between items-baseline">
+                  <h3 class="text-xl font-bold text-text-primary">
+                    {exp.role}
+                  </h3>
+                  <span class="text-sm font-mono text-accent flex-shrink-0 ml-4">
+                    {exp.period}
+                  </span>
                 </div>
-              ))
-            }
+                <p class="text-md text-text-secondary mb-2">{exp.company}</p>
+                <p class="text-lg text-text-secondary leading-relaxed mb-2">
+                  {exp.description}
+                </p>
+
+                {exp.bullets && (
+                  <ul class="list-disc pl-5 marker:text-accent text-base text-text-secondary leading-relaxed space-y-1 mt-1">
+                    {exp.bullets.map((item) => (
+                      <li set:html={item} />
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
           </div>
         </section>
 
         <section>
-          <h2
-            class="text-sm font-bold text-accent uppercase tracking-widest mb-8 border-b border-gray-800 pb-4"
-          >
+          <h2 class="text-sm font-bold text-accent uppercase tracking-widest mb-8 border-b border-gray-800 pb-4">
             Certificados
           </h2>
 
           <div class="flex flex-col gap-8">
-            {
-              certificatesData.map((cert) => (
-                <div class="flex flex-col gap-1">
-                  <div class="flex justify-between items-baseline">
-                    <h3 class="text-lg font-bold text-text-primary">
-                      {cert.name}
-                    </h3>
-                    <span class="text-sm font-mono text-accent flex-shrink-0 ml-4">
-                      {cert.year}
-                    </span>
-                  </div>
-                  <p class="text-md text-text-secondary mb-2">{cert.issuer}</p>
-
-                  {/* WRAPPER DE ENLACES: Muestra el correcto según el dispositivo */}
-                  <div class="mt-2 flex items-center gap-2">
-                    {/* Enlace para ESCRITORIO (Visible en md y superiores) */}
-                    <a
-                      href={cert.link}
-                      class="hidden md:inline-flex text-sm font-bold text-accent hover:text-white transition-colors items-center gap-1.5 group"
-                    >
-                      <span>Ver Certificado</span>
-                      <Fragment set:html={certLinkIcon} />
-                    </a>
-
-                    {/* Enlace para MÓVIL (Oculto en md y superiores) */}
-                    <a
-                      href={cert.link + '.pdf'}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="md:hidden inline-flex text-sm font-bold text-accent hover:text-white transition-colors items-center gap-1.5 group"
-                    >
-                      <span>Ver Certificado</span>
-                      <Fragment set:html={certLinkIcon} />
-                    </a>
-                  </div>
+            {certificatesData.map((cert) => (
+              <div class="flex flex-col gap-1">
+                <div class="flex justify-between items-baseline">
+                  <h3 class="text-lg font-bold text-text-primary">
+                    {cert.name}
+                  </h3>
+                  <span class="text-sm font-mono text-accent flex-shrink-0 ml-4">
+                    {cert.year}
+                  </span>
                 </div>
-              ))
-            }
+                <p class="text-md text-text-secondary mb-2">{cert.issuer}</p>
+
+                {/* WRAPPER DE ENLACES: Muestra el correcto según el dispositivo */}
+                <div class="mt-2 flex items-center gap-2">
+                  {/* Enlace para ESCRITORIO (Visible en md y superiores) */}
+                  <a
+                    href={cert.link}
+                    class="hidden md:inline-flex text-sm font-bold text-accent hover:text-white transition-colors items-center gap-1.5 group"
+                  >
+                    <span>Ver Certificado</span>
+                    <Fragment set:html={certLinkIcon} />
+                  </a>
+
+                  {/* Enlace para MÓVIL (Oculto en md y superiores) */}
+                  <a
+                    href={cert.link + '.pdf'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="md:hidden inline-flex text-sm font-bold text-accent hover:text-white transition-colors items-center gap-1.5 group"
+                  >
+                    <span>Ver Certificado</span>
+                    <Fragment set:html={certLinkIcon} />
+                  </a>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
       </div>
